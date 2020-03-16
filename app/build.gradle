@@ -11,6 +11,7 @@ ext {
     rxandroidVersion = '2.0.1'
     rxjavaVersion = '2.1.5'
     rxkotlinVersion = '2.2.0'
+    room_version = '2.2.4'
 }
 
 android {
@@ -25,7 +26,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASEURL", '"https://data.ratp.fr/api/records/1.0/"'
+        buildConfigField "String", "BASEURL", '"https://static.leboncoin.fr/img/shared/technical-test.json"'
     }
 
     buildTypes {
@@ -65,4 +66,12 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
     implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlinVersion"
+
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+
+
 }

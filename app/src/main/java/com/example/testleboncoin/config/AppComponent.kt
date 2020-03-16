@@ -16,12 +16,15 @@ import javax.inject.Singleton
         ActivitiesBindingModule::class,
         FragmentBindingModule::class,
         ApiModule::class,
-        PresenterModule::class
+        PresenterModule::class,
+        ServiceModule::class,
+        RepositoryModule::class,
+        RoomModule::class
     ]
 )
 
 
-interface AppComponent: AndroidInjector<App> {
+interface AppComponent : AndroidInjector<App> {
     @Component.Builder
     interface Builder {
         @BindsInstance
