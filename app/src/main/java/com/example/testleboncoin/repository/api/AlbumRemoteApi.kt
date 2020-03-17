@@ -5,6 +5,6 @@ import io.reactivex.Single
 import retrofit2.http.GET
 
 interface AlbumRemoteApi {
-    @GET("")
+    @GET("technical-test.json")
     fun getAlbums(): Single<List<Album>>
 }

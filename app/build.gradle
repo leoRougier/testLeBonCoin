@@ -12,6 +12,8 @@ ext {
     rxjavaVersion = '2.1.5'
     rxkotlinVersion = '2.2.0'
     room_version = '2.2.4'
+    nav_version = '2.3.0-alpha03'
+    paging_version = "2.1.1"
 }
 
 android {
@@ -26,7 +28,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "BASEURL", '"https://static.leboncoin.fr/img/shared/technical-test.json"'
+        buildConfigField "String", "BASEURL", '"https://static.leboncoin.fr/img/shared/"'
+
+            javaCompileOptions {
+                annotationProcessorOptions {
+                    arguments = [
+                            "room.incremental":"true"]
+                }
+            }
     }
 
     buildTypes {
@@ -46,6 +55,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
+    // Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
     //dagger 2
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
@@ -69,9 +83,15 @@ dependencies {
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
-    annotationProcessor "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
-    testImplementation "androidx.room:room-testing:$room_version"
 
+    //Paging
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    testImplementation "androidx.paging:paging-common:$paging_version"
+    implementation "androidx.paging:paging-rxjava2:$paging_version"
 
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
