@@ -1,5 +1,6 @@
 package com.example.testleboncoin.features.albums
 
+import androidx.paging.PagedList
 import com.example.testleboncoin.architecture.BasePresenter
 import com.example.testleboncoin.model.Album
 import com.example.testleboncoin.repository.AlbumRepository
@@ -10,7 +11,7 @@ class AlbumPresenter(private val repo: AlbumRepository) : BasePresenter<AlbumVie
 
     override fun onCreate() {
         super.onCreate()
-        repo.observeAlbums()
+        repo.observeAlbums(5)
             .observeOnMain()
             .subscribe {
                 onUpdate(it)
@@ -19,7 +20,7 @@ class AlbumPresenter(private val repo: AlbumRepository) : BasePresenter<AlbumVie
         repo.fetchAlbums().subscribeOnIO().subscribe().disposeOnDestroy()
     }
 
-    private fun onUpdate(albums: List<Album>) {
+    private fun onUpdate(albums: PagedList<Album>) {
         view?.set(albums)
     }
 }

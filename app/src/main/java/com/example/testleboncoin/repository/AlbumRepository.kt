@@ -13,6 +13,6 @@ class AlbumRepository(private val local:AlbumLocalSource,
         }
     }
 
-    fun observeAlbums() = local.observe()
+    fun observeAlbums(pageSize:Int) = local.observe(pageSize)
 
 }
